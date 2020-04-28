@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kotlin Project</string>
+    <string name="plus_1">+1</string>
 </resources>
