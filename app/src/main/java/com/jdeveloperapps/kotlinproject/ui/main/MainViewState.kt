@@ -1,6 +1,8 @@
 package com.jdeveloperapps.kotlinproject.ui.main
 
 import com.jdeveloperapps.kotlinproject.data.entity.Note
+import com.jdeveloperapps.kotlinproject.ui.base.BaseViewState
 
-data class MainViewState(val notes: List<Note>) {
+class MainViewState(notes: List<Note>? = null, error: Throwable? = null) : BaseViewState<List<Note>?>(notes, error) {
+
 }
