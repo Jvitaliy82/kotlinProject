@@ -2,4 +2,9 @@
     <string name="app_name">Kotlin Project</string>
     <string name="plus_1">+1</string>
     <string name="new_note_title">Новая заметка</string>
+    <string name="main_logout">Выйти</string>
+    <string name="exit">Выход</string>
+    <string name="main_logout_message">Вы уверенны?</string>
+    <string name="main_logout_ok">Да</string>
+    <string name="main_logout_cancel">Нет</string>
 </resources>
