@@ -7,14 +7,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.jdeveloperapps.kotlinproject.R
+import com.jdeveloperapps.kotlinproject.common.format
+import com.jdeveloperapps.kotlinproject.common.getColorInt
 import com.jdeveloperapps.kotlinproject.data.entity.Note
 import com.jdeveloperapps.kotlinproject.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_note.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NoteActivity : BaseActivity<Note?, NoteViewState>() {
@@ -59,15 +59,13 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
             supportActionBar?.title = getString(R.string.new_note_title)
         }
 
-
-
     }
 
     override fun renderData(data: Note?) {
         this.note = data
 
         supportActionBar?.title = note?.let {
-            SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(it.lastChange)
+            it.lastChange.format(DATE_FORMAT)
         } ?: getString(R.string.new_note_title)
 
         initView()
@@ -80,16 +78,8 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
         note?.let { note ->
             et_title.setText(note.title)
             et_body.setText(note.text)
-            val color = when (note.color) {
-                Note.Color.WHITE -> R.color.white
-                Note.Color.YELLOW -> R.color.yellow
-                Note.Color.GREEN -> R.color.green
-                Note.Color.BLUE -> R.color.blue
-                Note.Color.RED -> R.color.red
-                Note.Color.VIOLET -> R.color.violet
-                Note.Color.PINK -> R.color.pink
-            }
-            toolbar.setBackgroundColor(color)
+
+            toolbar.setBackgroundColor(note.color.getColorInt(this))
         }
 
         et_title.addTextChangedListener(textChangeListener)
