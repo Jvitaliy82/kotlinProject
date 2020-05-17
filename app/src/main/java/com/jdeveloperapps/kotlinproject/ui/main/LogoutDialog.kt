@@ -6,19 +6,19 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.jdeveloperapps.kotlinproject.R
 
-class LoginDialog(val onLogout: () -> Unit): DialogFragment() {
+class LogoutDialog(val onLogout: () -> Unit): DialogFragment() {
 
     companion object {
-        val TAG = LoginDialog::class.java.name + "TAG"
-        fun newInstance(onLogout: () -> Unit) = LoginDialog(onLogout)
+        val TAG = LogoutDialog::class.java.name + "TAG"
+        fun newInstance(onLogout: () -> Unit) = LogoutDialog(onLogout)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context)
                 .setTitle(getString(R.string.exit))
-                .setMessage(getString(R.string.main_logout_message))
-                .setPositiveButton(R.string.main_logout_ok) {dialog, which -> onLogout() }
-                .setNegativeButton(R.string.main_logout_cancel) {dialog, which -> dismiss() }
+                .setMessage(getString(R.string.question_message))
+                .setPositiveButton(R.string.ok) { dialog, which -> onLogout() }
+                .setNegativeButton(R.string.cancel) { dialog, which -> dismiss() }
                 .create()
     }
 
