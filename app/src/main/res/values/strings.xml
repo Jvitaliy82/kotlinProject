@@ -4,7 +4,9 @@
     <string name="new_note_title">Новая заметка</string>
     <string name="main_logout">Выйти</string>
     <string name="exit">Выход</string>
-    <string name="main_logout_message">Вы уверенны?</string>
-    <string name="main_logout_ok">Да</string>
-    <string name="main_logout_cancel">Нет</string>
+    <string name="question_message">Вы уверенны?</string>
+    <string name="ok">Да</string>
+    <string name="cancel">Нет</string>
+    <string name="note_delete">Delete</string>
+    <string name="note_color">Color</string>
 </resources>

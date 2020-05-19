@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.firebase.ui.auth.AuthUI
 import com.jdeveloperapps.kotlinproject.R
@@ -15,6 +14,7 @@ import com.jdeveloperapps.kotlinproject.ui.base.BaseActivity
 import com.jdeveloperapps.kotlinproject.ui.note.NoteActivity
 import com.jdeveloperapps.kotlinproject.ui.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
 
@@ -24,9 +24,7 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
         }
     }
 
-    override val viewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this).get(MainViewModel::class.java)
-    }
+    override val model: MainViewModel by viewModel()
 
     override val layoutRes: Int = R.layout.activity_main
 
@@ -65,14 +63,19 @@ class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
     }
 
     fun showLogoutDialog() {
-        supportFragmentManager.findFragmentByTag(LoginDialog.TAG) ?:
-                LoginDialog.newInstance {
+        supportFragmentManager.findFragmentByTag(LogoutDialog.TAG) ?:
+                LogoutDialog.newInstance {
                     AuthUI.getInstance()
                             .signOut(this)
                             .addOnCompleteListener {
                                 startActivity(Intent(this, SplashActivity::class.java))
                                 finish()
                             }
-                }.show(supportFragmentManager, LoginDialog.TAG)
+                }.show(supportFragmentManager, LogoutDialog.TAG)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity();
     }
 }
