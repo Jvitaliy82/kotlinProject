@@ -118,7 +118,7 @@ class FireStoreProviderTest {
 
     @Test
     fun `deleteNote returns Note`() {
-        var result: Note? = null
+        var result: NoteResult? = null
         val mockDocumentReference = mockk<DocumentReference>()
         val slot = slot<OnSuccessListener<in Void>>()
 
@@ -126,10 +126,10 @@ class FireStoreProviderTest {
         every { mockDocumentReference.delete().addOnSuccessListener(capture(slot)) } returns mockk()
 
         provider.deleteNote(testNotes[0].id).observeForever {
-            result = (it as? NoteResult.Success<Note>)?.data
+            result = it
         }
 
         slot.captured.onSuccess(null)
-        assertEquals(result, null)
+        assertTrue(result is NoteResult.Success<*>)
     }
 }

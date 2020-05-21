@@ -38,7 +38,7 @@ class FireStoreProvider(
                     value = NoteResult.Error(e)
                 } ?: let {
                     querySnapshot?.let {
-                        val notes = querySnapshot.map { it.toObject(Note::class.java) }
+                        val notes = querySnapshot.documents.map { it.toObject(Note::class.java) }
                         value = NoteResult.Success(notes)
                     }
                 }
