@@ -82,6 +82,7 @@ class FireStoreProviderTest {
         assertEquals(testNotes, result)
     }
 
+
     @Test
     fun `subscribeToAllNotes returns error`() {
         var result: Throwable? = null
@@ -115,20 +116,20 @@ class FireStoreProviderTest {
         assertEquals(testNotes[0], result)
     }
 
-//    @Test
-//    fun `deleteNote returns Note`() {
-//        var result: NoteResult.Success<Note>? = null
-//        val mockDocumentReference = mockk<DocumentReference>()
-//        val slot = slot<OnSuccessListener<in Void>>()
-//
-//        every { mockResultCollection.document(testNotes[0].id) } returns mockDocumentReference
-//        every { mockDocumentReference.delete().addOnSuccessListener(capture(slot)) } returns mockk()
-//
-//        provider.deleteNote(testNotes[0].id).observeForever {
-//            result = (it as? NoteResult.Success(null))?.data
-//        }
-//
-//        slot.captured.onSuccess(null)
-//        assertEquals(result, NoteResult.Success<Note>())
-//    }
+    @Test
+    fun `deleteNote returns Note`() {
+        var result: Note? = null
+        val mockDocumentReference = mockk<DocumentReference>()
+        val slot = slot<OnSuccessListener<in Void>>()
+
+        every { mockResultCollection.document(testNotes[0].id) } returns mockDocumentReference
+        every { mockDocumentReference.delete().addOnSuccessListener(capture(slot)) } returns mockk()
+
+        provider.deleteNote(testNotes[0].id).observeForever {
+            result = (it as? NoteResult.Success<Note>)?.data
+        }
+
+        slot.captured.onSuccess(null)
+        assertEquals(result, null)
+    }
 }
