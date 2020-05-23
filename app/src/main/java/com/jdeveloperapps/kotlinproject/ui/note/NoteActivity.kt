@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_note.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
+class NoteActivity : BaseActivity<NoteData>() {
 
     companion object {
 
@@ -61,7 +61,7 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
 
     }
 
-    override fun renderData(data: NoteViewState.Data) {
+    override fun renderData(data: NoteData) {
         if (data.isDeleted) finish()
         this.note = data.note
         initView()

@@ -16,7 +16,7 @@ import com.jdeveloperapps.kotlinproject.ui.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<List<Note>?, MainViewState>() {
+class MainActivity : BaseActivity<List<Note>?>() {
 
     companion object {
         fun start(context: Context) = Intent(context, MainActivity::class.java).run {

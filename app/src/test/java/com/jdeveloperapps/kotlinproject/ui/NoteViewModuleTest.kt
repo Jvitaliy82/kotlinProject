@@ -6,7 +6,6 @@ import com.jdeveloperapps.kotlinproject.data.NotesRepository
 import com.jdeveloperapps.kotlinproject.data.entity.Note
 import com.jdeveloperapps.kotlinproject.data.model.NoteResult
 import com.jdeveloperapps.kotlinproject.ui.note.NoteViewModel
-import com.jdeveloperapps.kotlinproject.ui.note.NoteViewState
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
